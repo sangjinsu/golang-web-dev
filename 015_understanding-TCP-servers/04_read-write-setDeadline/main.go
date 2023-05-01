@@ -27,6 +27,7 @@ func main() {
 
 func handle(conn net.Conn) {
 	err := conn.SetDeadline(time.Now().Add(10 * time.Second))
+	timeStart := time.Now()
 	if err != nil {
 		log.Fatalln("CONN TIMEOUT")
 	}
@@ -36,7 +37,9 @@ func handle(conn net.Conn) {
 		ln := scanner.Text()
 		fmt.Println(ln)
 		fmt.Fprintf(conn, "I heard you say: %s\n", ln)
+		fmt.Fprint(conn, fmt.Sprintln("End: ", int(time.Since(timeStart).Seconds())))
 	}
+
 	defer conn.Close()
 
 	// now we get here
