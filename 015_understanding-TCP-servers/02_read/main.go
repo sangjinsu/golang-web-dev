@@ -36,4 +36,5 @@ func handle(conn net.Conn) {
 	// we have an open stream connection
 	// how does the above reader know when it's done?
 	fmt.Println("Code got here.")
+	fmt.Println("telnet 으로 통신")
 }
